@@ -1,0 +1,40 @@
+{
+  "name": "hexo-tag-vimhighlight",
+  "version": "0.1",
+  "description": "Use Vim Syntax Highlight in Hexo",
+  "main": "index",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "website",
+    "blog",
+    "hexo",
+		"vim"
+  ],
+  "author": {
+    "name": "Yuxin Wu",
+    "email": "ppwwyyxxc@gmail.com",
+    "url": "http://ppwwyyxx.com"
+  },
+  "license": {
+    "type": "",
+    "url": ""
+  },
+  "engines": {
+    "hexo": ">= 1.0.0"
+  },
+  "dependencies": {
+		"execSync": "*",
+		"temp": "*",
+		"cheerio": "*"
+  },
+  "readme": "",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/tommy351/hexo-plugins/issues"
+  },
+  "_id": "hexo-renderer-coffeescript@0.0.2",
+  "_from": "hexo-renderer-coffeescript@>= 0.0.2"
+}
