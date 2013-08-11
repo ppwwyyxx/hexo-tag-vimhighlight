@@ -3,7 +3,8 @@
 This is a [hexo](https://github.com/tommy351/hexo)
 tag plugin which allows you to use vim syntax highlight to highlight code inside markdown.
 
-Hexo is a static blogging system written Node.js, it uses highlight.js by default to render code.
+Hexo is a static blogging system written in Node.js, it uses [highlight.js](http://softwaremaniacs.org/soft/highlight/en/)
+by default to render code.
 But lots of languages are not supported by highlight.js (but always supported by vim with proper plugins).
 In that case, you can use this instead.
 
@@ -11,9 +12,12 @@ In that case, you can use this instead.
 
 You need to have vim properly installed and configured, since this program will directly call vim.
 
+To install, run the following command in the root directory of hexo:
 ```
 npm install hexo-tag-vimhighlight --save
 ```
+
+And add this plugin in your ``_config.yml``.
 
 ## Usage
 
