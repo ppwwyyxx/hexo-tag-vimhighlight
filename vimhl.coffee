@@ -1,5 +1,5 @@
 # File: vimhl.coffee
-# Date: Sun Aug 11 14:03:13 2013 +0800
+# Date: Mon Aug 12 12:37:09 2013 +0800
 # Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 execSync = require('execSync').exec
@@ -8,15 +8,18 @@ temp = require 'temp'
 cheerio = require 'cheerio'
 
 formatFilter = (data) ->
-  # trim the extra first line
+  # trim the extra empty line
   data = data.trim()
   data = data.replace /\n/, ''
 
   # delete the extra line break between code
   data = data.replace /<br>/gi, ''
 
-  # replace dark blue with a lighter one
+  # replace dark color with lighter one
   data = data.replace /0000c0/gi, '2277cc'
+  data = data.replace /af5f00/gi, 'd5e617'
+  data = data.replace /008080/gi, '0edbcb'
+  data = data.replace /008000/gi, '00c000'
   return data
 
 vimHighlight = (data, ft, useLineN) ->

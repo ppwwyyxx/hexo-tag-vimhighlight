@@ -1,6 +1,6 @@
 {
   "name": "hexo-tag-vimhighlight",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Highlight code using vim in hexo",
   "main": "index",
   "repository": {
