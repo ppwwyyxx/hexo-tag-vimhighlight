@@ -12,8 +12,11 @@ In that case, you can use this instead.
 
 You need to have vim properly installed and configured, since this program will directly call vim.
 
+Also, you should have [hexo-renderer-coffeescript](https://npmjs.org/package/hexo-renderer-coffeescript) installed.
+
 To install, run the following command in the root directory of hexo:
 ```
+npm install hexo-renderer-coffeescript --save
 npm install hexo-tag-vimhighlight --save
 ```
 
