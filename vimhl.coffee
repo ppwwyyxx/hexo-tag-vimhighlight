@@ -1,5 +1,5 @@
 # File: vimhl.coffee
-# Date: Wed Oct 02 23:50:00 2013 +0800
+# Date: Sat Dec 21 12:57:59 2013 +0800
 # Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 execSync = require('execSync').exec
@@ -20,6 +20,7 @@ formatFilter = (data) ->
   data = data.replace /af5f00/gi, 'd5e617'
   data = data.replace /008080/gi, '0edbcb'
   data = data.replace /008000/gi, '00c000'
+  data = data.replace /804000/gi, 'd5e617'
   return data
 
 vimHighlight = (data, ft, useLineN) ->
