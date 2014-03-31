@@ -1,9 +1,10 @@
 # File: test.coffee
-# Date: Sat Dec 21 12:49:17 2013 +0800
+# Date: Wed Mar 26 11:47:28 2014 +0800
 # Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 
 vimhl = require('./vimhl').vimHighlight
+fs = require('fs')
 
 test = """
 void f(tuple<int, string> x) { /* ...*/  }
@@ -12,4 +13,7 @@ f(forward_as_tuple(1, "hah"));  // Perfect
 // f({1, "hah"});       // ERROR, cannot use initialization list
 """
 
-console.log(vimhl test, 'cpp')
+html = vimhl test, 'cpp'
+
+fd = fs.openSync('/tmp/a.html', 'w')
+fs.writeSync(fd, html)
