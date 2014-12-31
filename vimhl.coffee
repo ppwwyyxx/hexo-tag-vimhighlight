@@ -1,5 +1,5 @@
 # File: vimhl.coffee
-# Date: Wed Mar 26 11:45:25 2014 +0800
+# Date: Wed Dec 31 15:37:32 2014 +0800
 # Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 execSync = require('execSync').exec
@@ -27,7 +27,7 @@ vimHighlight = (data, ft, useLineN) ->
   if useLineN
     lineOpt = ' +"let g:html_number_lines=1" '
   else
-    lineOpt = ''
+    lineOpt = ' +"let g:html_number_lines=0" '
 
   info = temp.openSync({suffix: '.' + ft})
   fs.writeSync(info.fd, data)
