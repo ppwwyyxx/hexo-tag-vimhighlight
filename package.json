@@ -1,18 +1,18 @@
 {
   "name": "hexo-tag-vimhighlight",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "description": "Highlight code using vim in hexo",
   "main": "index",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ppwwyyxx/hexo-tag-vimhighlight.git"
+    "url": "git+https://github.com/ppwwyyxx/hexo-tag-vimhighlight.git"
   },
   "keywords": [
     "website",
     "blog",
     "hexo",
-		"highlight",
-		"vim"
+    "highlight",
+    "vim"
   ],
   "author": {
     "name": "Yuxin Wu",
@@ -24,13 +24,18 @@
     "hexo": ">= 1.0.0"
   },
   "dependencies": {
-		"execSync": "*",
-		"temp": "*",
-		"cheerio": "*"
+    "temp": "*",
+    "cheerio": "*"
   },
-  "readme": "",
+  "readme": "## Introduction\n\nThis is a [hexo](https://github.com/tommy351/hexo)\ntag plugin which allows you to use vim syntax highlight to highlight code inside markdown.\n\nHexo is a static blogging system written in Node.js, it uses [highlight.js](http://softwaremaniacs.org/soft/highlight/en/)\nby default to render code.\nBut lots of languages are not supported by highlight.js (but always supported by vim with proper plugins).\nIn that case, you can use this instead.\n\n## Installation\n\nYou need to have vim properly installed and configured, since this program will directly call vim.\n\n<!--\n   -Also, you should have [hexo-renderer-coffeescript](https://npmjs.org/package/hexo-renderer-coffeescript) installed.\n   -->\n\nTo install, run the following command in the root directory of hexo:\n```\nnpm install hexo-tag-vimhighlight --save\n```\n\nAnd add this plugin in your ``_config.yml``.\n\n## Usage\n\nSpecify the code filetype, and whether to use line number in your markdown source file, in\nthe common format of tag plugins:\n\n\t{% vimhl vim true %}\n\tif ! has(\"gui_running\")                \" fix alt key under terminal\n\t\tfor i in range(48, 57) + range(65, 90) + range(97, 122)\n\t\t\texec \"set <A-\" . nr2char(i) . \">=\u001b\" . nr2char(i)\n\t\tendfor\n\tendif\n\t{% endvimhl %}\n\nBy default, line number will not be displayed, you can use ``{% vimhl vim %}`` for short.\n\nThis program will run vim to highlight the code, therefore the generating of pages\nwill probably take much longer time. (It seems that hexo doesn't support parallel rendering.)\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/ppwwyyxx/hexo-tag-vimhighlight/issues"
-  }
+  },
+  "gitHead": "ef788a99b0ecf1c60fac3a7c14c031e6d1866dda",
+  "homepage": "https://github.com/ppwwyyxx/hexo-tag-vimhighlight",
+  "_id": "hexo-tag-vimhighlight@0.1.8",
+  "scripts": {},
+  "_shasum": "82d1cbb709c1891af0941685f5d1885ffee3d594",
+  "_from": "hexo-tag-vimhighlight@>=0.1.8 <0.2.0"
 }

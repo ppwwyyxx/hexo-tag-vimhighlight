@@ -1,8 +1,8 @@
 # File: vimhl.coffee
-# Date: Wed Dec 31 15:37:32 2014 +0800
+# Date: Thu May 28 18:23:18 2015 +0800
 # Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
-execSync = require('execSync').exec
+execSync = require('child_process').execSync
 fs = require 'fs'
 temp = require 'temp'
 cheerio = require 'cheerio'
@@ -34,7 +34,7 @@ vimHighlight = (data, ft, useLineN) ->
   fs.closeSync info.fd
 
   opt = ' +"let g:html_no_progress=1" +"let g:html_ignore_folding=1" +"let g:html_use_css=0" +"let g:html_pre_wrap=0" ' + lineOpt
-  execSync 'vim -X -E -i NONE -f ' + opt + ' +"TOhtml" -cwqa ' + info.path + ' > /dev/null'
+  execSync 'vim -X -i NONE -f ' + opt + ' +"TOhtml" -cwqa ' + info.path + ' > /dev/null 2>&1'
 
   htmlPath = info.path + '.html'
   result = fs.readFileSync htmlPath
