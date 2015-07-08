@@ -6,6 +6,8 @@ execSync = require('child_process').execSync
 fs = require 'fs'
 temp = require 'temp'
 cheerio = require 'cheerio'
+crypto = require('crypto')
+wrench = require('wrench')
 
 formatFilter = (data) ->
   # trim the extra empty line
@@ -24,28 +26,51 @@ formatFilter = (data) ->
   return data
 
 vimHighlight = (data, ft, useLineN) ->
-  if useLineN
-    lineOpt = ' +"let g:html_number_lines=1" '
+  cacheFileHash = crypto.createHash('md5');
+  cacheFileHash.update(data);
+  cacheFileHash.update(ft);
+  if (useLineN)
+    cacheFileHash.update("show line numbers");
   else
-    lineOpt = ' +"let g:html_number_lines=0" '
+    cacheFileHash.update("no line numbers");
 
-  info = temp.openSync({suffix: '.' + ft})
-  fs.writeSync(info.fd, data)
-  fs.closeSync info.fd
+  cacheFileName = cacheFileHash.digest('hex') + '.html';
 
-  opt = ' +"let g:html_no_progress=1" +"let g:html_ignore_folding=1" +"let g:html_use_css=0" +"let g:html_pre_wrap=0" ' + lineOpt
-  execSync 'vim -X -i NONE -f ' + opt + ' +"TOhtml" -cwqa ' + info.path + ' > /dev/null 2>&1'
+  _storageTemplateFolder = __dirname + '/../../data/vimHighlight/';
+  if (!fs.existsSync(_storageTemplateFolder))
+    wrench.mkdirSyncRecursive(_storageTemplateFolder, '0777');
 
-  htmlPath = info.path + '.html'
-  result = fs.readFileSync htmlPath
-  result = String result
-  fs.unlink htmlPath, (err) ->
+  if (!fs.existsSync(_storageTemplateFolder + '/' + cacheFileName))
+    if useLineN
+      lineOpt = ' +"let g:html_number_lines=1" '
+    else
+      lineOpt = ' +"let g:html_number_lines=0" '
 
-  fs.unlink info.path, (err) ->
-  $ = cheerio.load result
+    info = temp.openSync({suffix: '.' + ft})
+    fs.writeSync(info.fd, data)
+    fs.closeSync info.fd
 
-  ret = $('body')
-  ret = formatFilter ret.html()
+    opt = ' +"let g:html_no_progress=1" +"let g:html_ignore_folding=1" +"let g:html_use_css=0" +"let g:html_pre_wrap=0" ' + lineOpt
+    execSync 'vim -X -i NONE -f ' + opt + ' +"TOhtml" -cwqa ' + info.path + ' > /dev/null 2>&1'
+
+    htmlPath = info.path + '.html'
+    result = fs.readFileSync htmlPath
+    result = String result
+    fs.unlink htmlPath, (err) ->
+
+    fs.unlink info.path, (err) ->
+    $ = cheerio.load result
+
+    ret = $('body')
+    ret = formatFilter ret.html()
+
+    cacheFileFd = fs.openSync(_storageTemplateFolder + '/' + cacheFileName, 'w', '0666');
+    fs.writeSync(cacheFileFd, ret);
+    fs.closeSync(cacheFileFd);
+  else
+    result = fs.readFileSync(_storageTemplateFolder + '/' + cacheFileName);
+    ret = String(result);
+
   return ret
 
 exports.vimHighlight = vimHighlight
