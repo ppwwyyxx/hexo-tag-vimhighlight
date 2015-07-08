@@ -19,6 +19,13 @@
     "email": "ppwwyyxxc@gmail.com",
     "url": "http://ppwwyyxx.com"
   },
+  "contributors": [
+    {
+      "name": "Stuart McCulloch Anderson",
+      "url": "http://nxfifteen.me.uk",
+      "email": "stuart@nxfifteen.me.uk"
+    }
+  ],
   "license": "GPLv2",
   "engines": {
     "hexo": ">= 1.0.0"
