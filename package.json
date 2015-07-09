@@ -1,6 +1,6 @@
 {
   "name": "hexo-tag-vimhighlight",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Highlight code using vim in hexo",
   "main": "index",
   "repository": {
@@ -20,6 +20,11 @@
     "url": "http://ppwwyyxx.com"
   },
   "contributors": [
+    {
+      "name": "Yuxin Wu",
+      "url": "http://ppwwyyxx.com",
+      "email": "ppwwyyxxc@gmail.com"
+    },
     {
       "name": "Stuart McCulloch Anderson",
       "url": "http://nxfifteen.me.uk",

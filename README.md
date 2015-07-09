@@ -12,10 +12,6 @@ In that case, you can use this instead.
 
 You need to have vim properly installed and configured, since this program will directly call vim.
 
-<!--
-   -Also, you should have [hexo-renderer-coffeescript](https://npmjs.org/package/hexo-renderer-coffeescript) installed.
-   -->
-
 To install, run the following command in the root directory of hexo:
 ```
 npm install hexo-tag-vimhighlight --save
@@ -38,5 +34,5 @@ the common format of tag plugins:
 
 By default, line number will not be displayed, you can use ``{% vimhl vim %}`` for short.
 
-This program will run vim to highlight the code, therefore the generating of pages
-will probably take much longer time. (It seems that hexo doesn't support parallel rendering.)
+It runs vim to highlight the code, so site-generation will probably take much longer at
+the first time. But then the highlighted code will be cached in your_hexo_root/data/vimHighlight.
