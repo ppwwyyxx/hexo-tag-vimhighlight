@@ -6,8 +6,9 @@ tag plugin which allows you to use vim syntax highlight to highlight code inside
 Hexo is a static blogging system written in Node.js, it uses [highlight.js](http://softwaremaniacs.org/soft/highlight/en/)
 by default to render code.
 But lots of languages are not supported by highlight.js (but always supported by vim with proper plugins).
-In that case, you can use this instead. See an [example page](http://ppwwyyxx.com/2013/Explode-Tuple-in-C++11/).
+In that case, you can use this instead.
 
+See an [example page](http://ppwwyyxx.com/2013/Explode-Tuple-in-C++11/).
 Note that the actual appearance depends on how you config your vim.
 
 ## Installation
@@ -31,7 +32,7 @@ the common format of tag plugins:
 	sys.stdout.write("Hello World!")
 	{% endvimhl %}
 
-By default, line number will not be displayed, you can use ``{% vimhl vim %}`` for short.
+By default, line number will not be displayed, you can use ``{% vimhl python %}`` for short.
 
 It runs vim to highlight the code, so site-generation will probably take much longer at
 the first time. But then the highlighted code will be cached in your_hexo_root/data/vimHighlight.
