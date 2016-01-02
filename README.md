@@ -35,5 +35,5 @@ the common format of tag plugins:
 By default, line number will not be displayed, you can use ``{% vimhl python %}`` for short.
 
 It runs vim to highlight the code, so site-generation will probably take much longer at
-the first time. But then the highlighted code will be cached in your_hexo_root/data/vimHighlight.
+the first time. But then the highlighted code will be cached in ``your_hexo_root/data/vimHighlight``.
 After changing your vim colorscheme, you'll need to remove the cache folder manually.
