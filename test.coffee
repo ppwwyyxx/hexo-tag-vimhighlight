@@ -13,7 +13,7 @@ f(forward_as_tuple(1, "hah"));  // Perfect
 // f({1, "hah"});       // ERROR, cannot use initialization list
 """
 
-html = vimhl test, 'cpp'
+html = vimhl test, 'cpp', false, './cache'
 
 fd = fs.openSync('/tmp/a.html', 'w')
 fs.writeSync(fd, html)

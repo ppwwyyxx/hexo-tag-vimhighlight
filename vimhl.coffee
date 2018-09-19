@@ -1,6 +1,5 @@
 # File: vimhl.coffee
 # Date: Thu May 28 18:23:18 2015 +0800
-# Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 execSync = require('child_process').execSync
 fs = require 'fs'
@@ -25,7 +24,7 @@ formatFilter = (data) ->
   data = data.replace /804000/gi, 'd5e617'
   return data
 
-vimHighlight = (data, ft, useLineN) ->
+vimHighlight = (data, ft, useLineN, cacheDir) ->
   cacheFileHash = crypto.createHash('md5');
   cacheFileHash.update(data);
   cacheFileHash.update(ft);
@@ -36,11 +35,10 @@ vimHighlight = (data, ft, useLineN) ->
 
   cacheFileName = cacheFileHash.digest('hex') + '.html';
 
-  _storageTemplateFolder = __dirname + '/../../data/vimHighlight/';
-  if (!fs.existsSync(_storageTemplateFolder))
-    wrench.mkdirSyncRecursive(_storageTemplateFolder, '0777');
+  if (!fs.existsSync(cacheDir))
+    wrench.mkdirSyncRecursive(cacheDir, '0777');
 
-  if (!fs.existsSync(_storageTemplateFolder + '/' + cacheFileName))
+  if (!fs.existsSync(cacheDir + '/' + cacheFileName))
     if useLineN
       lineOpt = ' +"let g:html_number_lines=1" '
     else
@@ -64,11 +62,11 @@ vimHighlight = (data, ft, useLineN) ->
     ret = $('body')
     ret = formatFilter ret.html()
 
-    cacheFileFd = fs.openSync(_storageTemplateFolder + '/' + cacheFileName, 'w', '0666');
+    cacheFileFd = fs.openSync(cacheDir + '/' + cacheFileName, 'w', '0666');
     fs.writeSync(cacheFileFd, ret);
     fs.closeSync(cacheFileFd);
   else
-    result = fs.readFileSync(_storageTemplateFolder + '/' + cacheFileName);
+    result = fs.readFileSync(cacheDir + '/' + cacheFileName);
     ret = String(result);
 
   return ret

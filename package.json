@@ -33,7 +33,7 @@
   ],
   "license": "GPLv2",
   "engines": {
-    "hexo": ">= 1.0.0"
+    "hexo": ">= 3.0.0"
   },
   "dependencies": {
     "cheerio": "*",

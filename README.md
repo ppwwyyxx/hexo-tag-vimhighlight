@@ -1,6 +1,6 @@
 ## Introduction
 
-This is a [hexo](https://github.com/tommy351/hexo)
+This is a [hexo](https://github.com/hexojs/hexo)
 tag plugin which allows you to use vim syntax highlight to highlight code inside markdown.
 
 Hexo is a static blogging system written in Node.js, it uses [highlight.js](http://softwaremaniacs.org/soft/highlight/en/)
@@ -35,5 +35,5 @@ the common format of tag plugins:
 By default, line number will not be displayed, you can use ``{% vimhl python %}`` for short.
 
 It runs vim to highlight the code, so site-generation will probably take much longer at
-the first time. But then the highlighted code will be cached in ``your_hexo_root/data/vimHighlight``.
+the first time. But then the highlighted code will be cached in ``your_hexo_root/cache/vimHighlight``.
 After changing your vim colorscheme, you'll need to remove the cache folder manually.
