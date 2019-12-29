@@ -14,9 +14,9 @@ See the demo below (left: vimhighlight; right: highlight.js).
 ![demo](demo.jpg)
 
 From the image above, we see that highlight.js cannot recognize C++ keywords "struct", "static";
-it also cannot recognize STL functions "forward" and "get". All of these can be handled correctly by vim.
+it also fails to recognize STL functions "forward" and "get". All of these can be handled correctly by vim.
 
-See [this page](http://ppwwyyxx.com/2013/Explode-Tuple-in-C++11/) for more samples.
+See [this page](http://ppwwyyxx.com/blog/2013/Explode-Tuple-in-C++11/) for more samples.
 Note that the actual appearance depends on how you config your vim.
 
 ## Installation
