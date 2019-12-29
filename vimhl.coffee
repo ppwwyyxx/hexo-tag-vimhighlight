@@ -17,11 +17,12 @@ formatFilter = (data) ->
   data = data.replace /<br>/gi, ''
 
   # replace dark color with lighter one
-  data = data.replace /0000c0/gi, '2277cc'
-  data = data.replace /af5f00/gi, 'd5e617'
-  data = data.replace /008080/gi, '0edbcb'
-  data = data.replace /008000/gi, '00c000'
-  data = data.replace /804000/gi, 'd5e617'
+  data = data.replace /#0000c0/gi, '#2277cc'
+  data = data.replace /#af5f00/gi, '#d5e617'
+  data = data.replace /#008080/gi, '#0edbcb'
+  data = data.replace /#008000/gi, '#00c000'
+  data = data.replace /#804000/gi, '#d5e617'
+  data = data.replace /#c00000/gi, '#ff4040'
   return data
 
 vimHighlight = (data, ft, useLineN, cacheDir) ->
