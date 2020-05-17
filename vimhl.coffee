@@ -49,7 +49,13 @@ vimHighlight = (data, ft, useLineN, cacheDir) ->
     fs.writeSync(info.fd, data)
     fs.closeSync info.fd
 
-    opt = ' +"let g:html_no_progress=1" +"let g:html_ignore_folding=1" +"let g:html_use_css=0" +"let g:html_pre_wrap=0" ' + lineOpt
+    # https://bitbucket.org/fritzophrenic/vim-tohtml/issues/25/cannot-recognize-urls-with-ip-address
+    opt = '
+    +"let g:html_no_progress=1"
+    +"let g:html_ignore_folding=1"
+    +"let g:html_use_css=0"
+    +"let g:html_pre_wrap=0"
+    +"hi clear Constant"' + lineOpt
     execSync 'vim -X -i NONE -f ' + opt + ' +"TOhtml" -ncwqa ' + info.path + ' > /dev/null 2>&1'
 
     htmlPath = info.path + '.html'

@@ -1,6 +1,6 @@
 # File: test.coffee
 # Date: Wed Mar 26 11:47:28 2014 +0800
-# Author: Yuxin Wu <ppwwyyxxc@gmail.com>
+# Author: Yuxin Wu
 
 
 vimhl = require('./vimhl').vimHighlight
@@ -14,6 +14,10 @@ f(forward_as_tuple(1, "hah"));  // Perfect
 """
 
 html = vimhl test, 'cpp', false, './cache'
+console.log html
 
-fd = fs.openSync('/tmp/a.html', 'w')
-fs.writeSync(fd, html)
+test = """
+$ wget http://192.168.1.1
+"""
+html = vimhl test, 'sh', false, './cache'
+console.log html
