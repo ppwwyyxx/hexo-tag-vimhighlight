@@ -28,8 +28,6 @@ To install, run the following command in the root directory of hexo:
 npm install hexo-tag-vimhighlight --save
 ```
 
-And add this plugin in your ``_config.yml``.
-
 ## Usage
 
 Specify the code filetype, and whether to show line number, in
