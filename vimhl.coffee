@@ -23,6 +23,8 @@ formatFilter = (data) ->
   data = data.replace /#008000/gi, '#00c000'
   data = data.replace /#804000/gi, '#d5e617'
   data = data.replace /#c00000/gi, '#ff4040'
+  # https://stackoverflow.com/questions/2083754/why-shouldnt-apos-be-used-to-escape-single-quotes
+  data = data.replace /&apos;/gi, '&#27;'
   return data
 
 vimHighlight = (data, ft, useLineN, cacheDir) ->
