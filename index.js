@@ -6,5 +6,7 @@ hexo.extend.tag.register('vimhl', function(args, content){
 	var useLineN = args[1];
   var cacheDir = pathFn.join(hexo.source_dir, '..', 'cache', 'vimHighlight')
 
-	return '<figure class="highlight"><pre>' + vimHighlight(content, file_ext, useLineN, cacheDir) + '</pre></figure>';
-}, {ends: true} )
+  return vimHighlight(content, file_ext, useLineN, cacheDir).then(function(x) {
+	  return '<figure class="highlight"><pre>' + x + '</pre></figure>';
+  });
+}, {ends: true, async: true} )

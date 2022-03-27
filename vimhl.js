@@ -2,13 +2,15 @@
 (function() {
   // File: vimhl.coffee
   // Date: Thu May 28 18:23:18 2015 +0800
-  var cheerio, crypto, execSync, formatFilter, fs, temp, vimHighlight, wrench;
+  var cheerio, crypto, exec, formatFilter, fs, temp, util, vimHighlight, wrench;
 
-  execSync = require('child_process').execSync;
+  util = require('util');
+
+  exec = util.promisify(require('child_process').exec);
 
   fs = require('fs');
 
-  temp = require('temp');
+  temp = require('temp').track();
 
   cheerio = require('cheerio');
 
@@ -34,8 +36,8 @@
     return data;
   };
 
-  vimHighlight = function(data, ft, useLineN, cacheDir) {
-    var $, cacheFileFd, cacheFileHash, cacheFileName, htmlPath, info, lineOpt, opt, result, ret;
+  vimHighlight = async function(data, ft, useLineN, cacheDir) {
+    var $, cacheFileHash, cacheFileName, htmlPath, info, lineOpt, opt, result, ret;
     cacheFileHash = crypto.createHash('md5');
     cacheFileHash.update(data);
     cacheFileHash.update(ft);
@@ -54,27 +56,24 @@
       } else {
         lineOpt = ' +"let g:html_number_lines=0" ';
       }
-      info = temp.openSync({
+      info = (await temp.open({
         suffix: '.' + ft
-      });
-      fs.writeSync(info.fd, data);
-      fs.closeSync(info.fd);
+      }));
+      await fs.promises.writeFile(info.path, data);
       // https://bitbucket.org/fritzophrenic/vim-tohtml/issues/25/cannot-recognize-urls-with-ip-address
       opt = '+"let g:html_no_progress=1" +"let g:html_ignore_folding=1" +"let g:html_use_css=0" +"let g:html_pre_wrap=0" +"hi clear Constant"' + lineOpt;
-      execSync('vim -X -i NONE -f ' + opt + ' +"TOhtml" -ncwqa ' + info.path + ' > /dev/null 2>&1');
+      await exec('vim -X -i NONE -f ' + opt + ' +"TOhtml" -ncwqa ' + info.path + ' > /dev/null 2>&1');
       htmlPath = info.path + '.html';
-      result = fs.readFileSync(htmlPath);
+      result = (await fs.promises.readFile(htmlPath));
       result = String(result);
       fs.unlink(htmlPath, function(err) {});
       fs.unlink(info.path, function(err) {});
       $ = cheerio.load(result);
       ret = $('body');
       ret = formatFilter(ret.html());
-      cacheFileFd = fs.openSync(cacheDir + '/' + cacheFileName, 'w', '0666');
-      fs.writeSync(cacheFileFd, ret);
-      fs.closeSync(cacheFileFd);
+      await fs.promises.writeFile(cacheDir + '/' + cacheFileName, ret);
     } else {
-      result = fs.readFileSync(cacheDir + '/' + cacheFileName);
+      result = (await fs.promises.readFile(cacheDir + '/' + cacheFileName));
       ret = String(result);
     }
     return ret;
