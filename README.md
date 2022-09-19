@@ -51,6 +51,14 @@ struct Expander {
 
 By default, line number will not be displayed, you can use ``{% vimhl cpp %}`` for short.
 
-It runs vim to highlight the code, so site-generation will probably take much longer at
-the first time. But then the highlighted code will be cached in ``your_hexo_root/cache/vimHighlight``.
-After changing your vim colorscheme, you'll need to remove the cache folder manually.
+## Speed
+
+This plugin calls `vim` to highlight code, so site-generation may be slow sometimes. The following mechanism are used to speed up rendering:
+
+* The highlighted code will be cached in ``your_hexo_root/cache/vimHighlight`` so that only the first-time rendering will execute `vim`.
+  Note that this implies you'll need to remove the cache folder manually if you changed vim colorscheme.
+  
+To further speed up the first-time rendering:
+* This plugin uses async hexo tag. This means the `vimhl` tags between different posts will render concurrently.
+* [This hexo patch](https://github.com/hexojs/hexo/pull/4926) further enables concurrent rendering of tags within one post. If you have a single post with many `vimhl` tags, this patch can improve the first-time rendering.
+
