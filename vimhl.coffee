@@ -12,7 +12,7 @@ wrench = require('wrench')
 formatFilter = (data) ->
   # trim the extra empty line
   data = data.trim()
-  data = data.replace /\n/, ''
+  data = data.replace '\n', ''
 
   # delete the extra line break between code
   data = data.replace /<br>/gi, ''

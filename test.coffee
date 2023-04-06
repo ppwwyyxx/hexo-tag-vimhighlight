@@ -13,11 +13,16 @@ f(forward_as_tuple(1, "hah"));  // Perfect
 // f({1, "hah"});       // ERROR, cannot use initialization list
 """
 
-html = vimhl test, 'cpp', false, './cache'
-console.log html
-
-test = """
+test2 = """
 $ wget http://192.168.1.1
 """
-html = vimhl test, 'sh', false, './cache'
-console.log html
+
+
+main = () ->
+  html = await vimhl test, 'cpp', false, './cache'
+  console.log html
+  html = await vimhl test2, 'sh', false, './cache'
+  console.log html
+  return html
+
+main()
